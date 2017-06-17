@@ -11,7 +11,7 @@ exports.preload = function (game) {
 }
 
 exports.create = function (game) {
-  
+  var splash = game.add.image(0, 0, 'splash');
 
   var button = new SlickUI.Element.Button(game.width / 2 - (140 / 2), game.height / 4 * 3, 140, 80);
   game.slickUI.add(button);

@@ -12,9 +12,7 @@ var moveSpeed = 2;
 var flapStrength = 350;
 var rotationSpeed = 0.25;
 
-var isDead = false;
-var isFalling = false;
-var timeAlive = 0;  // in s
+
 
 function KnownFlyingObject(game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'cow');
@@ -31,6 +29,10 @@ function KnownFlyingObject(game, x, y) {
   // default animation
   this.fly();
 
+  this.isDead = false;
+  this.isFalling = false;
+  this.timeAlive = 0;  // in s
+
   this.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 }
@@ -38,14 +40,14 @@ KnownFlyingObject.prototype = Object.create(Phaser.Sprite.prototype);
 KnownFlyingObject.prototype.constructor = KnownFlyingObject;
 
 KnownFlyingObject.prototype.update = function () {
-  if (!isDead) {
+  if (!this.isDead) {
     /* flap on Spacebar or Mouse Click */
     if (this.game.input.activePointer.isDown || this.spaceKey.isDown)
     {
       this.flap();
     }
 
-    timeAlive += this.game.time.physicsElapsed;
+    this.timeAlive += this.game.time.physicsElapsed;
   }
 
   var velocity = this.game.math.clamp(this.body.velocity.y, -350, 350);
@@ -53,7 +55,7 @@ KnownFlyingObject.prototype.update = function () {
 
   this.rotation = this.game.math.rotateToAngle(this.rotation, this.game.math.degToRad(targetAngle), rotationSpeed);
 
-  this.game.debug.text('TimeAlive: ' + timeAlive.toFixed(2), 20, 20);
+  // console.log('TimeAlive: ' + this.timeAlive.toFixed(2));
 };
 
 KnownFlyingObject.prototype.fly = function () {
@@ -65,19 +67,19 @@ KnownFlyingObject.prototype.flap = function() {
 };
 
 KnownFlyingObject.prototype.hitGround = function() {
-  if (!isDead) {
-    isDead = true;
+  if (!this.isDead) {
+    this.isDead = true;
 
     this.play('falling'); // looks funny, let's keep it at falling instead of Dead for now ;)
   }
 
-  isFalling = false;
+  this.isFalling = false;
 };
 
 KnownFlyingObject.prototype.hitObstacle = function() {
-  if (!isDead) {
-    isDead = true;
-    isFalling = true;
+  if (!this.isDead) {
+    this.isDead = true;
+    this.isFalling = true;
 
     this.play('falling');
   }
@@ -86,3 +88,9 @@ KnownFlyingObject.prototype.hitObstacle = function() {
 KnownFlyingObject.prototype.getSpeed = function() {
   return moveSpeed;
 };
+
+KnownFlyingObject.prototype.getTimeAlive = function() {
+  return this.timeAlive;
+};
+
+

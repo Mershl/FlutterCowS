@@ -45,4 +45,8 @@ exports.game = [{
   key: 'spider',
   url: 'spider_full.png',
   type: 'image'
+},
+{
+  key: 'splash',
+  type: 'image'
 }];

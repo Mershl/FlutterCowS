@@ -17,14 +17,11 @@ var GameOverOverlay = require('../objects/GameOverOverlay');
 var gravityStrength = 500;
 var gameOverAfterX = -250;
 
-var isGameOver = false;
-
 exports.preload = function (game) {
   game.slickUI.load('ui/kenney/kenney.json');
-}
+};
 
 exports.create = function (game) {
-  this.game = game;
   this.game.physics.startSystem(Phaser.Physics.ARCADE);
   this.game.physics.arcade.gravity.y = gravityStrength;
 
@@ -38,10 +35,12 @@ exports.create = function (game) {
 
   this.obstacles = new Obstacles(game);
   this.obstacleSpawner = new ObstacleSpawner(game, this.obstacles);
+
+  this.isGameOver = false;
 };
 
 exports.update = function () {
-  if (!isGameOver) {
+  if (!this.isGameOver) {
     this.game.physics.arcade.collide(this.kfo, this.ground, function(objA) {
       objA.hitGround();
     });
@@ -59,12 +58,14 @@ exports.update = function () {
 };
 
 exports.gameOver = function() {
-  if (!isGameOver) {
+  if (!this.isGameOver) {
     // this.ground.disable();
     // this.bg.disable();
     this.obstacleSpawner.disable();
 
-    isGameOver = true;
+    this.isGameOver = true;
+
+    this.game.lastScore = this.kfo.getTimeAlive();
 
     // show GameOverUI overlay
     this.gameOverOverlay = new GameOverOverlay(this.game);
