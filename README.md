@@ -1,15 +1,9 @@
-# [FlutterCows](https://example.com/my-game/)
+# [FlutterCowS](https://github.com/cubei)
 
->   Enhance the world renown FlutterCow with massive multiplayer goodness.
+>   Enhance the world renown FlutterCow with glorious new features.
 
----
 
-Congrats! To manage your project and start developing your new game right away,
-the following npm scripts are available:
-
->   TIP: You can also use Gulp to manage development tasks.
-
-The following npm scripts are also available:
+The following npm scripts are available:
 
 ```sh
 npm start         # Or `gulp`: launches the project development environment.
@@ -18,6 +12,3 @@ npm run lint      # Or `gulp lint`: Checks scripts for linting issues.
 npm run clean     # Or `gulp clean`: Deletes build files.
 npm run test-dist # Build and run your project
 ```
-
-Should you consider distributing your game as an open source project, please
-choose and [include a LICENSE file](http://choosealicense.com/) for your project.
