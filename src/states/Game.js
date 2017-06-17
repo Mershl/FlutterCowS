@@ -14,7 +14,7 @@ var Obstacles = require('../objects/Obstacles');
 var ObstacleSpawner = require('../objects/ObstacleSpawner');
 var GameOverOverlay = require('../objects/GameOverOverlay');
 
-var gravityStrength = 500;
+var gravityStrength = 1000;
 var gameOverAfterX = -250;
 
 exports.preload = function (game) {

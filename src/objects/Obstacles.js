@@ -55,7 +55,7 @@ Obstacles.prototype.createObstacle = function(gapBetween) {
 Obstacles.prototype.move = function(playerSpeed) {
   var gameRef = this.game;
   this.forEach(function(pipe) {
-    pipe.body.velocity.x -= playerSpeed;
+    pipe.body.velocity.x = -playerSpeed * 200;
 
     if (pipe.body.x < destroyAfterX) {
       pipe.destroy();

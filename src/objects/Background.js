@@ -8,7 +8,7 @@
 
 module.exports = Background;
 
-var scrollSpeed = 400;
+var scrollSpeed = 300;
 
 function Background(game, x, y, width, height) {
   Phaser.TileSprite.call(this, game, x, y, width, height, 'bg');
