@@ -6,17 +6,17 @@
 
 'use strict';
 
-exports.create = function (game) {
-  var caption = game.add.text(320, 240, 'My Awesome Game', {
-    fill: 'white',
-    font: '48px Arial',
-    fontStyle: 'bold',
-    stroke: 'black',
-    strokeThickness: 3
-  });
-  caption.anchor.set(0.5);
-};
+exports.preload = function (game) {
+  game.slickUI.load('ui/kenney/kenney.json');
+}
 
-exports.update = function (/*game*/) {
-  // TODO: Stub
+exports.create = function (game) {
+  
+
+  var button = new SlickUI.Element.Button(game.width / 2 - (140 / 2), game.height / 4 * 3, 140, 80);
+  game.slickUI.add(button);
+  button.add(new SlickUI.Element.Text(0, 0, 'Play')).center();
+  button.events.onInputUp.add(function() {
+    game.state.start('Game');
+  });
 };

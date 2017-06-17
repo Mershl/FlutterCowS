@@ -19,6 +19,10 @@ var gameOverAfterX = -250;
 
 var isGameOver = false;
 
+exports.preload = function (game) {
+  game.slickUI.load('ui/kenney/kenney.json');
+}
+
 exports.create = function (game) {
   this.game = game;
   this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -54,10 +58,6 @@ exports.update = function () {
   }
 };
 
-exports.render = function() {
-
-}
-
 exports.gameOver = function() {
   if (!isGameOver) {
     // this.ground.disable();
@@ -69,4 +69,4 @@ exports.gameOver = function() {
     // show GameOverUI overlay
     this.gameOverOverlay = new GameOverOverlay(this.game);
   }
-}
+};
